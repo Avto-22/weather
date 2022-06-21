@@ -179,6 +179,46 @@ button {
     font-size: 18px;
 }
 
+.time-container{
+    width: 100%;
+    min-width: 250px;
+    height: 403px;
+    border-radius: 20px;
+    border:2px solid white;
+    transform: translateY(-405px);
+    background-color: rgba(0, 0, 0, 0.900);
+    opacity:0;
+    transition:.8s;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    padding-top: 20px;
+    overflow: auto;
+}
+
+.time-container:hover,.time-container:focus{
+    opacity: 1;
+}
+
+.clear-display{
+    opacity: 0;
+}
+
+.time-container button{
+    color:white;
+    margin:12px;
+    border:1px solid white;
+    width:80px;
+    transition:.5s;
+}
+
+.time-container button:hover{
+    color:black;
+    background-color: white;
+    border:1px solid black;
+}
+
 @keyframes shake {
 
     10%,

@@ -24,20 +24,24 @@
   <a href="#cards">5 დღიანი პროგნოზი</a>
 </div> -->
 <div class="forecast" id="cards" *ngIf="forecastWeatherArray">
-  <div class="card" *ngFor="let day of dayCount">
-    <div class="name" >{{forecastWeatherArray[day].date}}</div>
+  <div class="card" *ngFor="let day of dayCount; let dayIndex=index">
+    
+    <div class="name" >{{forecastWeatherArray[day]?.dateForDisplay}}</div>
     <div class="brand-logo" id="logo" >
-      <img [src]="forecastWeatherArray[day].icon">
+      <img [src]="forecastWeatherArray[day]?.icon">
     </div>
-    <div class="brand-title" *ngIf="weather">{{forecastWeatherArray[day].description}}</div>
+    <div class="brand-title" *ngIf="weather">{{forecastWeatherArray[day]?.description}}</div>
     <div class="temp" >
-      <p>{{forecastWeatherArray[day].temp}}°C</p>
+      <p>{{forecastWeatherArray[day]?.temp}}°C</p>
     </div>
     <div class="description" >
-      <p>FEELS LIKE: {{forecastWeatherArray[day].feels_like}}°C </p>
-      <p>MAX TEMP: {{forecastWeatherArray[day].temp_max}}°C </p>
-      <p>MIN TEMP: {{forecastWeatherArray[day].temp_min}}°C </p>
-      <p>WIND SPEED: {{forecastWeatherArray[day].speed}} km/hr </p>
+      <p>FEELS LIKE: {{forecastWeatherArray[day]?.feels_like}}°C </p>
+      <p>MAX TEMP: {{forecastWeatherArray[day]?.temp_max}}°C </p>
+      <p>MIN TEMP: {{forecastWeatherArray[day]?.temp_min}}°C </p>
+      <p>WIND SPEED: {{forecastWeatherArray[day]?.speed}} km/hr </p>
+    </div>
+    <div class="time-container" [ngClass]="{'clear-display':isTimeChanged}">
+      <button class="time-button" *ngFor="let hour of hoursArray" (click)="changeDayTime(forecastWeatherArray[day]?.date,dayIndex,hour)">{{hour}}</button>
     </div>
   </div>
 </div>

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Injectable } from '@angular/core';
 import { forkJoin } from 'rxjs';
-import { ForecastWeatherApi, ForecastWeather, ForecastListWeather, DaysObj, WeatherApi } from './app.model';
+import { ForecastWeatherApi, ForecastWeather, DaysObj, WeatherApi } from './app.model';
 
 @Injectable({
   providedIn: 'root'
@@ -66,7 +66,7 @@ export class WeatherApiService {
         name: data[0].name
       };
       //--------------------------------------- მეორე api-ზე მუშაობა
-      app.forecastWeatherArray = data[1].list.map<ForecastWeather>(item => {
+      app.forecastWeatherArray = data[1].list.map<ForecastWeather>((item,index) => {
         return {
           temp: Math.floor(item.main.temp - 273.15),
           temp_max: Math.floor(item.main.temp_max - 273.15),
@@ -75,8 +75,9 @@ export class WeatherApiService {
           speed: Math.floor(item.wind.speed * 3.6),
           description: item.weather[0].description,
           icon: `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${item.weather[0].icon}.svg`,
-          date: this.daysArray.find(element => element.index == (new Date(item.dt_txt.split(' ')[0]).getDay()))?.day,
-          humidity: item.main.humidity
+          dateForDisplay: this.daysArray.find(element => element.index == (new Date(item.dt_txt.split(' ')[0]).getDay()))?.day,
+          humidity: item.main.humidity,
+          date:item.dt_txt
         }
       });
     },
