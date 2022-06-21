@@ -1,5 +1,7 @@
 <div class="container" >
+  <p class="card-title" *ngIf="weather">current weather</p>
   <div class="name" *ngIf="weather">{{weather.name}}</div>
+  
   <div class="brand-logo" id="logo" *ngIf="weather">
     <img [src]="weather.icon">
   </div>
@@ -8,7 +10,6 @@
     <input spellcheck="false" [ngClass]="{error:isError}" type="text" placeholder="Search city" ngModel name="city" />
     <button (click)="weatherApiService.getWeatherByCityName(form.value.city,this)" type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></button>
   </form>
-  
   <div class="temp" *ngIf="weather">
     <p>{{weather.temp}}°C</p>
   </div>
@@ -17,5 +18,26 @@
     <p>MAX TEMP: {{weather.temp_max}}°C </p>
     <p>MIN TEMP: {{weather.temp_min}}°C </p>
     <p>WIND SPEED: {{weather.speed}} km/hr </p>
+  </div>
+</div>
+<!-- <div class="forecast-button" *ngIf="weather">
+  <a href="#cards">5 დღიანი პროგნოზი</a>
+</div> -->
+<div class="forecast" id="cards" *ngIf="forecastWeatherArray">
+  <div class="card" *ngFor="let day of dayCount">
+    <div class="name" >{{forecastWeatherArray[day].date}}</div>
+    <div class="brand-logo" id="logo" >
+      <img [src]="forecastWeatherArray[day].icon">
+    </div>
+    <div class="brand-title" *ngIf="weather">{{forecastWeatherArray[day].description}}</div>
+    <div class="temp" >
+      <p>{{forecastWeatherArray[day].temp}}°C</p>
+    </div>
+    <div class="description" >
+      <p>FEELS LIKE: {{forecastWeatherArray[day].feels_like}}°C </p>
+      <p>MAX TEMP: {{forecastWeatherArray[day].temp_max}}°C </p>
+      <p>MIN TEMP: {{forecastWeatherArray[day].temp_min}}°C </p>
+      <p>WIND SPEED: {{forecastWeatherArray[day].speed}} km/hr </p>
+    </div>
   </div>
 </div>

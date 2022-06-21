@@ -2,7 +2,7 @@
 
 * {
     box-sizing: border-box;
-    color:black;
+    color: black;
 }
 
 .container {
@@ -16,15 +16,63 @@
     box-shadow: 14px 14px 20px #cbced100, -14px -14px 20px black;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60px;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
-.name{
-    margin-top:-20px;
+.card-title {
+    position: absolute;
+    top: -70px;
+    left: 21%;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+    transition: 1s;
+    animation-name: current;
+    animation-duration: .5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    min-width: 250px;
+    height: 400px;
+    border-radius: 20px;
+
+    box-sizing: border-box;
+    background: #ecf0f381;
+    box-shadow: 14px 14px 20px #cbced100, -14px -14px 20px black;
+    /* padding:10px; */
+    padding-top: 10px;
+    margin: 10px;
+    margin-top: 30px;
+}
+
+
+
+.forecast {
+    margin: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+
+}
+
+.name {
+    margin-top: -20px;
     font-weight: 900;
     font-size: 1.8rem;
     letter-spacing: 1px;
     text-align: center;
+}
+
+.card .name {
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin-top: -10px;
 }
 
 .brand-logo {
@@ -36,15 +84,15 @@
     box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
 }
 
-.brand-logo img{
-    width:100px;
+.brand-logo img {
+    width: 100px;
     height: 100px;
 }
 
 .brand-title {
     margin-top: 10px;
-    text-align:center;
-    font-size:20px;
+    text-align: center;
+    font-size: 20px;
 }
 
 .inputs {
@@ -74,7 +122,7 @@ input {
     font-size: 18px;
     border-radius: 50px;
     box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-  
+
 }
 
 button {
@@ -90,46 +138,91 @@ button {
     cursor: pointer;
 }
 
-.temp{
-    margin-top:-20px;
+.temp {
+    margin-top: -20px;
 }
 
-.temp p{
- text-align: center;
- font-size: 50px;
- font-weight:bolder;
+.forecast .temp {
+    margin-top: -40px;
 }
 
-.description{
-    margin-top:-30px;
+.temp p {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bolder;
 }
 
-.description p{
-    text-align:center;
-    font-size:18px;
-    font-weight:lighter
+.description {
+    margin-top: -30px;
 }
 
-.error{
-    border:2px solid red;
+.description p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: lighter
+}
+
+.error {
+    border: 2px solid red;
     animation: shake 0.82s;
 }
 
+.forecast-button a {
+    padding: 15px;
+    background: #ecf0f381;
+    border-radius: 50px;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-left: 42%;
+    border: 2px solid black;
+    font-weight: bolder;
+    font-size: 18px;
+}
 
 @keyframes shake {
-    10%, 90% {
-      transform: translate3d(-1px, 0, 0);
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
     }
-    
-    20%, 80% {
-      transform: translate3d(2px, 0, 0);
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
     }
-  
-    30%, 50%, 70% {
-      transform: translate3d(-4px, 0, 0);
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
     }
-  
-    40%, 60% {
-      transform: translate3d(4px, 0, 0);
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
     }
-  }
+}
+
+@keyframes current {
+    0% {
+        top: 0px;
+    }
+
+    100% {
+        top: -70px;
+    }
+}
+
+@media(max-width:340px) {
+    .card {
+
+        margin-left: 50px;
+    }
+}
+
+@media(max-width:330px) {
+    .card {
+
+        margin-left: 80px;
+    }
+}
